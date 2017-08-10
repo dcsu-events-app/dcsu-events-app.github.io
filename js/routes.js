@@ -15,6 +15,12 @@ angular.module('app.routes', [])
     controller: 'pageCtrl'
   })
 
+  .state('calendar', {
+    url: '/calendar',
+    templateUrl: 'templates/calendar.html',
+    controller: 'calendarCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page1')
 
 
