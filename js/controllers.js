@@ -16,7 +16,7 @@ function ($scope, $stateParams, $window) {
     });
     
     $scope.goTo = function(link){
-        $window.location.href = link;
+        $window.parent.location.href = link;
         console.log('Going to:'+link);
     }
 }])
