@@ -6,7 +6,7 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams, $window) {
     $scope.events = [];
     var dbRef = firebase.database().ref('events');
-    dbRef.on('value',function(snapshot){
+    dbRef.once('value',function(snapshot){
         angular.forEach(snapshot.val(), function(value, key) {
             this.push(value);
         }, $scope.events);

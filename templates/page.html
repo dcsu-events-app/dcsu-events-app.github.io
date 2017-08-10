@@ -1,7 +1,7 @@
 <ion-view title="Page" hide-nav-bar="true" cache-view="false" nav-transition="none" id="page1">
   <ion-content padding="false" class=" manual-remove-top-padding">
     <ion-list id="page-list2" class="eventsList">
-      <ion-item class="item-thumbnail-left eventsItem" id="page-list-item1" ng-repeat="event in events" ng-click="goTo(event.Page)">
+      <ion-item class="item-thumbnail-left eventsItem" id="page-list-item1" ng-repeat="event in events | orderBy: 'TimeStamp'" ng-click="goTo(event.Page)">
         <img src="{{event.Thumbnail}}">
         <h2>{{event.Name}}</h2>
         <p>{{event.Date}}
