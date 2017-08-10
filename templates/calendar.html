@@ -1,14 +1,24 @@
 <ion-view title="Calendar" hide-nav-bar="true" cache-view="false" id="page2">
   <ion-content padding="false" class=" manual-remove-top-padding">
-    <div id="calendar-container1" ng-repeat="event in events | orderBy: 'TimeStamp'" class="eventContainer">
-      <div id="calendar-container2" class="eventImgContainer">
-        <div>
-          <img src="{{event.Thumbnail}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+    <div id="calendar-container4" ng-repeat="date in foundMonths">
+      <ion-list id="calendar-list3">
+        <ion-item class="item-divider" id="calendar-list-item-divider1"> {{date.month}}</ion-item>
+      </ion-list>
+      <div id="calendar-container1" ng-repeat="event in events | orderBy: 'TimeStamp' | filter: filterByMonth(date)" ng-click="goTo(event.Page)" class="eventContainer">
+        <div id="calendar-container2" class="eventImgContainer">
+          <div>
+            <img src="{{event.Thumbnail}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+          </div>
         </div>
+        <span id="calendar-container3" class="eventDetails">
+          <span class="eventTitle">{{event.Name}}
+            <br>
+            <small>
+              <i>{{event.Cost}}</i>
+            </small>
+          </span>
+        </span>
       </div>
-      <span id="calendar-container3" class="eventDetails">
-        <span class="eventTitle">{{event.Name}}</span>
-      </span>
     </div>
   </ion-content>
 </ion-view>
