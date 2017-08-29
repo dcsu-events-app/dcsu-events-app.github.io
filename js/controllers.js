@@ -4,6 +4,7 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $window) {
+
     $scope.events = [];
     var dbRef = firebase.database().ref('events');
     dbRef.once('value',function(snapshot){
@@ -18,6 +19,15 @@ function ($scope, $stateParams, $window) {
     $scope.goTo = function(link){
         $window.parent.location.href = link;
         console.log('Going to:'+link);
+    }
+    
+    $scope.oldOrNew = function(obj){
+        
+        if ( obj.TimeStamp > Date.now() ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }])
    
@@ -69,11 +79,14 @@ function ($scope, $stateParams, $filter, $window) {
     
     $scope.filterByMonth = function(date){
         //console.log(date);
+        
         return function(item){ 
             //console.log($filter('date')(item.TimeStamp, 'MMMM'));
           if($filter('date')(item.TimeStamp, 'MMMM') === date.month){
               
-                console.log(date.year === $filter('date')(item.TimeStamp, 'yy'));
+            console.log(date.year === $filter('date')(item.TimeStamp, 'yy'));
+            //
+            if(item.TimeStamp > date){ console.log('Foundone OUt of Date'); }
               if($filter('date')(item.TimeStamp, 'yy') === date.year) {
                   return true
               } else {
